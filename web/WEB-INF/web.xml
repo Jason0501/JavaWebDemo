@@ -9,6 +9,10 @@
         <!--        <load-on-startup>1</load-on-startup>-->
     </servlet>
     <servlet>
+        <servlet-name>TwoServlet</servlet-name>
+        <servlet-class>com.jason.controller.TwoServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UserAddTeacherServlet</servlet-name>
         <servlet-class>com.jason.controller.UserAddTeacherServlet</servlet-class>
     </servlet>
@@ -36,10 +40,22 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.jason.controller.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>com.jason.controller.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FindProductServlet</servlet-name>
+        <servlet-class>com.jason.controller.FindProductServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>OneServlet</servlet-name>
         <url-pattern>/one</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TwoServlet</servlet-name>
+        <url-pattern>/two</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserAddTeacherServlet</servlet-name>
@@ -69,4 +85,30 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/user/login</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/addProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FindProductServlet</servlet-name>
+        <url-pattern>/findProduct</url-pattern>
+    </servlet-mapping>
+
+    <!--设置默认启动页面-->
+    <welcome-file-list>
+        <welcome-file>login.html</welcome-file>
+    </welcome-file-list>
+
+    <!--设置Session空闲时间-->
+    <session-config>
+        <session-timeout>5</session-timeout>
+    </session-config>
+
+    <!--注册监听器接口-->
+    <listener>
+        <listener-class>com.jason.listener.MyServletContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.jason.listener.MyServletContextAttributeListener</listener-class>
+    </listener>
 </web-app>

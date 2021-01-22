@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 /**
  * @author：Jason
@@ -22,6 +22,21 @@ public class OneServet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("OneServlet doGet执行了...");
+        ServletContext servletContext = request.getServletContext();
+        servletContext.setAttribute("msg", "hello");
+        Cookie cookie = new Cookie("msg", "world");
+        //cookie在客户端硬盘上的存活时间，单位：秒
+        cookie.setMaxAge(60);
+        HttpSession session = request.getSession();
+        session.setAttribute("msg",new Cookie("msg","你好"));
+
+        response.addCookie(cookie);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/two");
+        requestDispatcher.forward(request, response);
+        if (true) {
+            return;
+        }
         System.out.println("doGet");
 //        通过请求对象，读取【请求行】中url信息
         String url = request.getRequestURL().toString();
