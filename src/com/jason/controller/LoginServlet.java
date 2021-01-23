@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author：Jason
@@ -25,6 +26,7 @@ public class LoginServlet extends HttpServlet {
         int result = teacherDao.login(username, password);
         resp.setContentType("text/html;charset=utf-8");
         if (result > 0) {
+            HttpSession session = req.getSession();
             resp.sendRedirect("/JavaWebDemo/index.html");
         } else {
             resp.sendRedirect("/JavaWebDemo/login_fail.html");

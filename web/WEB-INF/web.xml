@@ -111,4 +111,14 @@
     <listener>
         <listener-class>com.jason.listener.MyServletContextAttributeListener</listener-class>
     </listener>
+    <filter>
+        <filter-name>MyFilter</filter-name>
+        <filter-class>com.jason.listener.MyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>MyFilter</filter-name>
+        <!--        对所有的资源文件都进行过滤-->
+        <url-pattern>/*</url-pattern>
+        <!--        <url-pattern>/login.html</url-pattern>-->
+    </filter-mapping>
 </web-app>
